@@ -19,3 +19,6 @@ pillow # for image preprocessing
 
 # frontend
 streamlit
+
+librosa
+resemblyzer
