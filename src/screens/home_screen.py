@@ -4,7 +4,6 @@ from src.ui.base_layout import style_base_layout, style_background_home, style_b
 from src.components.footer import footer_home
 
 def home_screen():
-
     header_home()
     style_background_home()
     style_base_layout()
