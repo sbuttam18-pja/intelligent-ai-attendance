@@ -59,6 +59,7 @@ def get_trained_model():
 
     return {'clf': clf, 'X':X, 'y':y}
 
+# when a new students enter
 def train_classifier():
     st.cache_resource.clear()
     model_data = get_trained_model()
