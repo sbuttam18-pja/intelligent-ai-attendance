@@ -2,9 +2,8 @@ import streamlit as st
 from src.screens.home_screen import home_screen
 from src.screens.teacher_screen import teacher_screen
 from src.screens.student_screen import student_screen
-
 from src.components.dialog_auto_enroll import auto_enroll_dialog
-
+from src.components.dialog_add_photo import add_photos_dialog
 def main():
     st.set_page_config(
         page_title='SnapClass - Making Attendance faster using AI',
@@ -22,7 +21,6 @@ def main():
         
         case None:
             home_screen()
-
 
     join_code = st.query_params.get('join-code')
     if join_code:
