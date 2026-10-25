@@ -176,8 +176,6 @@ def teacher_tab_take_attendance():
             voice_attendance_dialog(selected_subject_id)
 
 
-    
-
 def teacher_tab_manage_subjects():
     teacher_id = st.session_state.teacher_data['teacher_id']
     col1, col2 = st.columns(2)
@@ -296,7 +294,7 @@ def teacher_screen_login():
         if st.button('Login', icon=':material/passkey:', shortcut='control+enter', width='stretch'):
             if login_teacher(teacher_username, teacher_pass):
                 st.toast("Welcome back!", icon="👋")
-                time.sleep(2) 
+                time.sleep(1) 
                 st.rerun()
             else:
                 st.error("Invalid Username and password")              
@@ -363,6 +361,6 @@ def teacher_screen_register():
 
     with btnc2:
         if st.button('Login Instead', type="primary", icon=':material/passkey:', width='stretch'):
-            st.session_state.teacher_login_type = 'register'
+            st.session_state.teacher_login_type = 'login'
 
     footer_dashboard()
