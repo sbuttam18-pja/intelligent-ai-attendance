@@ -50,7 +50,6 @@ def teacher_dashboard():
         st.session_state.current_teacher_tab = 'take_attendance'
     tab1, tab2, tab3 = st.columns(3)
 
-
     with tab1:
         type1 = "primary" if st.session_state.current_teacher_tab == 'take_attendance' else "tertiary"
         if st.button('Take Attendance',type=type1, width='stretch', icon=':material/ar_on_you:'):
@@ -92,7 +91,7 @@ def teacher_tab_take_attendance():
     if not subjects:
         st.warning('You havent created any subjects yet! Please create one to begin!')
         return
-    
+
     subject_options = {f"{s['name']} - {s['subject_code']}": s['subject_id'] for s in subjects}
 
     col1, col2 = st.columns([3,1], vertical_alignment='bottom')
@@ -149,11 +148,10 @@ def teacher_tab_take_attendance():
 
                     current_timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
-
                     for node in enrolled_students:
                         student = node['students']
                         sources = all_detected_ids.get(int(student['student_id']), [])
-                        is_present= len(sources) > 0
+                        is_present = len(sources) > 0
 
                         results.append({
                             "Name": student['name'],
@@ -175,7 +173,6 @@ def teacher_tab_take_attendance():
         if st.button('Use Voice Attendance', type='primary', width='stretch', icon=':material/mic:'):
             voice_attendance_dialog(selected_subject_id)
 
-
 def teacher_tab_manage_subjects():
     teacher_id = st.session_state.teacher_data['teacher_id']
     col1, col2 = st.columns(2)
@@ -185,7 +182,6 @@ def teacher_tab_manage_subjects():
     with col2:
         if st.button('Create New Subject', width='stretch'):
             create_subject_dialog(teacher_id)
-
 
     # LIST all SUBJECTS
     subjects = get_teacher_subjects(teacher_id)
@@ -219,7 +215,7 @@ def teacher_tab_attendance_records():
 
     if not records:
         return
-    
+
     data = []
 
     for r in records:
@@ -241,7 +237,6 @@ def teacher_tab_attendance_records():
             Present_Count = ('is_present', 'sum'),
             Total_Count =('is_present', 'count')
         ).reset_index()
-
     )
 
     summary['Attendance Stats'] = (
@@ -252,9 +247,9 @@ def teacher_tab_attendance_records():
     display_df: pd.DataFrame = ( summary.sort_values(by='ts_group' ,ascending=False)
                   [['Time', 'Subject', 'Subject Code', 'Attendance Stats']]
                   )
-    
+
     st.dataframe(display_df, width='stretch', hide_index=True)
-    
+
 def login_teacher(username, password):
     if not username or not password:
         return False
@@ -266,7 +261,7 @@ def login_teacher(username, password):
         st.session_state.teacher_data = teacher
         st.session_state.is_logged_in = True
         return True
-    
+
     return False
 
 def teacher_screen_login():
@@ -298,13 +293,13 @@ def teacher_screen_login():
                 st.rerun()
             else:
                 st.error("Invalid Username and password")              
-            
+
     with btnc2:
         if st.button('Register Instead', type="primary", icon=':material/passkey:', width='stretch'):
             st.session_state.teacher_login_type = 'register'
-            
+  
     footer_dashboard()
- 
+
 def register_teacher(teacher_username, teacher_name, teacher_pass, teacher_pass_confirm):
     if not teacher_username or not teacher_name or not teacher_pass:
         return False, "All fields are required!"
