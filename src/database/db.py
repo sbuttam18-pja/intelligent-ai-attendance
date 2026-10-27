@@ -25,7 +25,6 @@ def teacher_login(username, password):
             return teacher
     return None
 
-
 def get_all_students():
     response = supabase.table('students').select("*").execute()
     return response.data
@@ -50,26 +49,25 @@ def get_teacher_subjects(teacher_id):
         unique_sessions = len(set(log['timestamp'] for log in attendance))
         sub['total_classes'] = unique_sessions
 
-
         sub.pop('subject_student', None)
         sub.pop('attendance_logs', None)
 
     return subjects
 
 
-def  enroll_student_to_subject(student_id, subject_id):
+def enroll_student_to_subject(student_id, subject_id):
     data = {'student_id': student_id, "subject_id": subject_id}
     response= supabase.table('subject_students').insert(data).execute()
     return response.data
 
-def  unenroll_student_to_subject(student_id, subject_id):
+
+def unenroll_student_to_subject(student_id, subject_id):
     response= supabase.table('subject_students').delete().eq('student_id', student_id).eq('subject_id', subject_id).execute()
     return response.data
 
 def get_student_subjects(student_id):
     response = supabase.table('subject_students').select('*, subjects(*)').eq('student_id', student_id).execute()
     return response.data
-
 
 def get_student_attendance(student_id):
     response = supabase.table('attendance_logs').select('*, subjects(*)').eq('student_id', student_id).execute()
