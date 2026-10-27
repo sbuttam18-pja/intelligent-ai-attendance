@@ -27,7 +27,6 @@ def student_dashboard():
             del st.session_state.student_data 
             st.rerun()
 
-
     st.space()
 
     c1, c2 =st.columns(2)
@@ -64,16 +63,14 @@ def student_dashboard():
         sub = sub_node['subjects']
         sid = sub['subject_id']
 
-
         stats = stats_map.get(sid,{"total":0, "attended": 0} )
-        def unenroll_button():
-                if st.button("Unenroll from tihs course", type='tertiary', width='stretch', icon=':material/delete_forever:'):
-                    unenroll_student_to_subject(student_id, sid)
-                    st.toast(f'Unenrolled from {sub['name']} successfully!')
-                    st.rerun()
+        def unenroll_button(sid=sid, sub=sub):
+            if st.button("Unenroll from tihs course",key=f"unenroll_{sid}", type='tertiary', width='stretch', icon=':material/delete_forever:'):
+                unenroll_student_to_subject(student_id, sid)
+                st.toast(f'Unenrolled from {sub['name']} successfully!')
+                st.rerun()
 
         with cols[i % 2]:
-
             subject_card(
                 name = sub['name'],
                 code =sub['subject_code'],
@@ -89,8 +86,10 @@ def student_dashboard():
 
 def student_screen():
 
+
     style_background_dashboard()
     style_base_layout()
+
 
     if "student_data" in st.session_state:
         student_dashboard()
