@@ -31,7 +31,6 @@ def add_photos_dialog():
             st.toast('Photo Captured')
             st.rerun()
 
-
     if st.session_state.photo_tab == 'upload':
         uploaded_files = st.file_uploader( 'choose image files', type=['jpg', 'png', 'jpeg' ], accept_multiple_files=True, key='dialog_upload')
 
