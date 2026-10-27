@@ -102,7 +102,7 @@ def style_base_layout():
                 }
 
             button:hover{
-                transform :scale(1.05)}
+                transform :scale(1.06)}
         </style>  
 
                 """
