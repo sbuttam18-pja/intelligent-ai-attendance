@@ -3,7 +3,6 @@ from src.database.db import enroll_student_to_subject
 from src.database.config import supabase
 import time
 
-
 from src.database.db import create_attendance
 
 def show_attendance_result(df, logs):
@@ -27,8 +26,7 @@ def show_attendance_result(df, logs):
                 st.session_state.voice_attendance_results = None
                 st.rerun()
             except Exception as e:
-                st.error('Sync failed!')
-                
+                st.error('Sync failed!')  
 
 @st.dialog("Attendance Reports")
 def attendance_result_dialog(df, logs):
