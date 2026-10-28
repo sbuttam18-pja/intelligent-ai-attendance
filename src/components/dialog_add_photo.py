@@ -11,7 +11,6 @@ def add_photos_dialog():
 
     if 'photo_tab' not in st.session_state:
         st.session_state.photo_tab = 'camera'
-
     t1, t2 = st.columns(2)
 
     with t1:
