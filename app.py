@@ -5,17 +5,13 @@ ROOT_DIR = Path(__file__).resolve().parent
 
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
-
+    
+import streamlit as st
 from src.screens.home_screen import home_screen
 from src.screens.teacher_screen import teacher_screen
 from src.screens.student_screen import student_screen
 
 from src.components.dialog_auto_enroll import auto_enroll_dialog
-import sys
-from pathlib import Path
-
-import sys
-from pathlib import Path
 
 def main():
     st.set_page_config(
